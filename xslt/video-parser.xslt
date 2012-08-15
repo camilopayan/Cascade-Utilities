@@ -28,16 +28,6 @@
       </xalan:script>
    </xalan:component>
 
-   <!-- Hi I'm Testing Code! -->
-   <xsl:template match="a" >
-      <xsl:call-template name="url-to-embed">
-         <xsl:with-param name="url" select="c">
-            
-         </xsl:with-param>
-         
-      </xsl:call-template>
-   </xsl:template>
-
    <xsl:template name="url-to-embed" >
       <xsl:param name="url" />
       <xsl:param name="width">560</xsl:param>
