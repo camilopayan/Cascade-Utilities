@@ -18,7 +18,7 @@
 
          function vimeo_id(url){
             var re = /http:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
-            return url.match(re)[1];
+            return url.match(re)[2];
          }
 
          function youtube_id(url){
@@ -53,7 +53,7 @@
             </iframe>
          </xsl:when>      
          <xsl:when test="$site = 'vimeo'">
-            <iframe width="$width" height="$height"
+            <iframe width="{$width}" height="{$height}"
                frameborder="0" allowfullscreen="true">
                <xsl:attribute name="src">
                   <xsl:value-of select="concat('http://player.vimeo.com/video/', vpre:vimeo_id(string($url))) " />
