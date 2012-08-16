@@ -13,7 +13,9 @@
     
     <!-- Creating the AddThis code from the page's metadata -->
     <xsl:template name="addthis">
-       <xsl:with-param name="page"></xsl:with-param>
+       <xsl:param name="page">
+       </xsl:param>
+       
         <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
             <a class="addthis_button_facebook"></a>
             <a class="addthis_button_twitter"></a>
@@ -44,7 +46,9 @@
 
     <!-- Creating Disqus code from page metadata -->
     <xsl:template name="disqus">
-       <xsl:with-param name="page"></xsl:with-param>
+       <xsl:param name="page">
+       </xsl:param>
+       
        <div id="disqus_thread"></div>
         <script type="text/javascript">
             // [cascade:cdata]
