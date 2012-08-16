@@ -1,5 +1,6 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"> 
 
+   <!-- This is template purely for testing against Cascade Index Blocks -->
     <xsl:template match="system-index-block">
         <xsl:apply-templates select="calling-page/system-page" mode="addthis" />
     </xsl:template>
@@ -7,14 +8,6 @@
     <!-- Creating the AddThis code from the page's metadata -->
     <xsl:template match="system-page" mode="addthis">
         <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-            <!--
-                <xsl:attribute name="addthis:title">
-                    <xsl:value-of select="display-name" />
-                </xsl:attribute>
-                <xsl:attribute name="addthis:description">
-                    <xsl:value-of select="summary" />
-                </xsl:attribute>
-            -->
             <a class="addthis_button_facebook"></a>
             <a class="addthis_button_twitter"></a>
             <a class="addthis_button_preferred_3"></a>
