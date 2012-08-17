@@ -1,20 +1,8 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"> 
 
-   <!-- This is template purely for testing against Cascade Index Blocks -->
-    <xsl:template match="system-index-block">
-        <xsl:call-template name="addthis">
-           <xsl:with-param name="page" select="calling-page/system-page"></xsl:with-param>
-        </xsl:call-template>
-        <xsl:call-template name="disqus">
-           <xsl:with-param name="page" select="calling-page/system-page"></xsl:with-param>
-        </xsl:call-template>
-        
-    </xsl:template>
-    
     <!-- Creating the AddThis code from the page's metadata -->
     <xsl:template name="addthis">
-       <xsl:param name="page">
-       </xsl:param>
+       <xsl:param name="page" />
        
         <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
             <a class="addthis_button_facebook"></a>
@@ -46,8 +34,7 @@
 
     <!-- Creating Disqus code from page metadata -->
     <xsl:template name="disqus">
-       <xsl:param name="page">
-       </xsl:param>
+       <xsl:param name="page" />
        
        <div id="disqus_thread"></div>
         <script type="text/javascript">
