@@ -2,7 +2,10 @@
 
     <!-- Creating the AddThis code from the page's metadata -->
     <xsl:template name="addthis">
-       <xsl:param name="page" />
+        <xsl:param name="dname">
+        </xsl:param>
+        <xsl:param name="summary">
+        </xsl:param>
        
         <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
             <a class="addthis_button_facebook"></a>
@@ -13,32 +16,33 @@
             <a class="addthis_counter addthis_bubble_style"></a>
         </div>
         <script type="text/javascript">
-            // [cascade:cdata]
+            //[cascade:cdata]
             // <xsl:comment><xsl:text>#START-CODE</xsl:text>
             <xsl:text disable-output-escaping="yes"><![CDATA[
                 var addthis_config = {"data_track_addressbar":true};
                 var addthis_share = {
                     title: ']]></xsl:text>
-                 <xsl:value-of select="$page/display-name" />
+                 <xsl:value-of select="$dname" />
             <xsl:text disable-output-escaping="yes"><![CDATA[',
                 description: ']]></xsl:text>
-             <xsl:value-of select="$page/summary" />
+             <xsl:value-of select="$summary" />
             <xsl:text disable-output-escaping="yes"><![CDATA['
                 }
             ]]></xsl:text>
             // <xsl:text>#END-CODE</xsl:text></xsl:comment>
-            // [/cascade:cdata]
+        //[/cascade:cdata]
         </script>
         <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4d8a095f17af53f9"></script>
     </xsl:template>
 
     <!-- Creating Disqus code from page metadata -->
     <xsl:template name="disqus">
-       <xsl:param name="page" />
+       <xsl:param name="dname" />
+       <xsl:param name="idno" />
        
        <div id="disqus_thread"></div>
         <script type="text/javascript">
-            // [cascade:cdata]
+            //[cascade:cdata]
             // <xsl:comment><xsl:text>#START-CODE</xsl:text>
                   
                <xsl:text disable-output-escaping="yes"><![CDATA[
@@ -47,12 +51,12 @@
                   ]]></xsl:text>
 
                <xsl:text disable-output-escaping="yes"><![CDATA[var disqus_title = ']]></xsl:text>
-                  <xsl:value-of select="$page/display-name" />
+                  <xsl:value-of select="$dname" />
                   <xsl:text disable-output-escaping="yes"><![CDATA[';
                      ]]></xsl:text>
 
                <xsl:text disable-output-escaping="yes"><![CDATA[var disqus_identifier = ']]></xsl:text>
-                  <xsl:value-of select="$page/@id" />
+                  <xsl:value-of select="$idno" />
                   <xsl:text disable-output-escaping="yes"><![CDATA[';
                      ]]></xsl:text>
 
@@ -65,7 +69,7 @@
                   ]]>
                   </xsl:text>
             // <xsl:text>#END-CODE</xsl:text></xsl:comment>
-            // [/cascade:cdata]
+        //[/cascade:cdata]
         </script>
         <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
