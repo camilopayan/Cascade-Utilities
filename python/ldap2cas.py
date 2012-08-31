@@ -8,12 +8,6 @@ groupid.type = "group"
 gresponse = cascade.service.read(auth, groupid)
 
 userlist = re.split(";", gresponse.asset.group.users)
-userlist = [ 'vraut001',
-      'hmira001',
-      'aadam007',
-      'omato001',
-      'syoub001',
-      'rleon'];
 
 userid = cascade.factory.create("identifier")
 userid.type = "user"
