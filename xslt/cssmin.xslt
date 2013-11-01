@@ -2,17 +2,15 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
   exclude-result-prefixes="fiu" 
   version="1.0" 
-  xmlns:hh="http://www.hannonhill.com/XSL/Functions" 
+  xmlns:fiu="http://www.hannonhill.com/XSL/Functions" 
   xmlns:xalan="http://xml.apache.org/xalan"
   >
 
   <xsl:template name="cssmin">
     <xsl:param name="css" />
     <xsl:param name="linebreakpos" />
-
-
+    <xsl:value-of select="fiu:cssmin($css, $linebreakpos)" />
   </xsl:template>
-
   
   <xalan:component functions="cssmin" prefix="fiu">
     <xalan:script lang="javascript">
