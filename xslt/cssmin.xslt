@@ -6,9 +6,17 @@
   xmlns:xalan="http://xml.apache.org/xalan"
   >
 
+  <xsl:template name="cssmin">
+    <xsl:param name="css" />
+    <xsl:param name="linebreakpos" />
+
+
+  </xsl:template>
+
   
   <xalan:component functions="cssmin" prefix="fiu">
     <xalan:script lang="javascript">
+      <![CDATA[
       /**
       * node-cssmin
       * A simple module for Node.js that minify CSS
@@ -365,7 +373,7 @@
 
       }
 
-      exports.cssmin = cssmin;
+      ]]>
     </xalan:script>
   </xalan:component>
 
