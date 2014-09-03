@@ -42,15 +42,14 @@
                 }
 
                 function createICalURI(name, start, end, email, organizer, description, domain, id){
-                    //Shim because Cascade doesnt seem to have toISOString support
-                    Date.prototype.toISOString = function(){
+
+                    Date.prototype.toICalString = function(){
                       return this.getUTCFullYear() +
-                        '-' + pad( this.getUTCMonth() + 1 ) +
-                        '-' + pad( this.getUTCDate() ) +
+                        pad( this.getUTCMonth() + 1 ) +
+                        pad( this.getUTCDate() ) +
                         'T' + pad( this.getUTCHours() ) +
-                        ':' + pad( this.getUTCMinutes() ) +
-                        ':' + pad( this.getUTCSeconds() ) +
-                        '.' + (this.getUTCMilliseconds() / 1000).toFixed(3).slice(2, 5) +
+                        pad( this.getUTCMinutes() ) +
+                        pad( this.getUTCSeconds() ) +
                         'Z';
                     };                
                 
@@ -64,25 +63,22 @@
                     dtearr = end.split('-');                    
                     dtstart = new Date(dtsarr[2], dtsarr[1], dtsarr[0]);
                     dtend = new Date(dtearr[2], dtearr[1], dtearr[0]);
-                    
-                    //The globally unique uuid is going to be the start time,
-                    //the end time, the page id in Cascade and the domain.
-                    uuid = dtstart.toISOString() + "-" + dtend.toISOString() + "-" + id + "@" + domain;
+                    uuid = dtstart.toICalString() + "-" + dtend.toICalString() + "-" + id + "@" + domain;
 
                     //Start the ical
-                    var icalsample = "BEGIN:VCALENDAR\r\n\
-                    VERSION:2.0\r\n\
-                    PRODID:-\/\/mycompany.com\/myproduct\/\/NONSGML v1.0\/\/EN\r\n\
-                    BEGIN:VEVENT\r\n\
-                    UID:" + uuid + "\r\n\
-                    DTSTAMP:" + dtstamp.toISOString() + "\r\n\
-                    ORGANIZER;CN=" + organizer + ":mailto:" + email + "\r\n\
-                    DTSTART:" + dtstart.toISOString() + "\r\n\
-                    DTEND:" + dtend.toISOString() + "\r\n\
-                    SUMMARY:" + name + "\r\n\
-                    DESCRIPTION:" + description + "\r\n\
-                    END:VEVENT\r\n\
-                    END:VCALENDAR\r\n";
+                    var icalsample = "BEGIN:VCALENDAR\r\n"+
+                    "VERSION:2.0\r\n"+
+                    "PRODID:-\/\/mycompany.com\/myproduct\/\/NONSGML v1.0\/\/EN\r\n"+
+                    "BEGIN:VEVENT\r\n"+
+                    "UID:" + uuid + "\r\n"+
+                    "DTSTAMP:" + dtstamp.toICalString() + "\r\n"+
+                    "ORGANIZER;CN=" + organizer + ":mailto:" + email + "\r\n"+
+                    "DTSTART:" + dtstart.toICalString() + "\r\n"+
+                    "DTEND:" + dtend.toICalString() + "\r\n"+
+                    "SUMMARY:" + name + "\r\n"+
+                    "DESCRIPTION:" + description + "\r\n"+
+                    "END:VEVENT\r\n"+
+                    "END:VCALENDAR\r\n";
                     
                     var uriContent = "data:text/calendar," + encodeURIComponent(icalsample);
                     return uriContent;
